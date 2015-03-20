@@ -1,0 +1,16 @@
+{
+	"name": "slideFill",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wangchi/slideFill.git"
+	},
+	"version": "0.1.0",
+	"description": "Full Width Slide Plugin",
+	"author": "WalkerBe",
+	"homepage": "http://www.walkerbe.com/",
+	"dependencies": {
+		"jquery": "~1.11.1",
+		"less.js": "1.5.0"
+	},
+	"private": true
+}

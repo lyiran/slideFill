@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slideFill Demo</title>
+
+    <link rel="stylesheet/less" href="../less/reset.less">
+    <link rel="stylesheet/less" href="../less/slideFill.less">
+
+    <script src="../../bower_lib/less.js/dist/less-1.5.0.js"></script>
+
+</head>
+<body>
+
+    <div class="slide slide-fill" id="J-slide-fill">
+        <ul class="slide-pic">
+            <li class="cur" style="background-image: url(../images/slide01.jpg);"><a href="#"></a></li>
+            <li style="background-image: url(../images/slide02.jpg);"><a href="#"></a></li>
+            <li style="background-image: url(../images/slide03.jpg);"><a href="#"></a></li>
+        </ul>
+        <ul class="slide-num">
+            <li class="cur">1</li>
+            <li>1</li>
+            <li>3</li>
+        </ul>
+    </div>
+
+
+    <script src="../../bower_lib/jquery/dist/jquery.js"></script>
+    <script src="../js/slideFill.js"></script>
+    <script>
+        $(function () {
+            console.log( slideFill );
+            slideFill.handSlide();
+            slideFill.autoSlide();
+            slideFill.mouseOverPause();
+        });
+    </script>
+</body>
+</html>

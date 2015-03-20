@@ -1,0 +1,70 @@
+
+/*
+* ----------------------------------
+* 全屏幻灯片
+* ----------------------------------
+*/
+
+@slide-fill-height: 350px;
+
+.slide-fill {
+  width: 100%;
+  height: @slide-fill-height;
+
+  .slide-pic {
+    position: relative;
+    height: @slide-fill-height;
+    li {
+      display: none;
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: @slide-fill-height;
+      background-repeat: no-repeat;
+      background-position: center top;
+      a {
+        display: block;
+        height: @slide-fill-height;
+      }
+    }
+
+    .cur {
+      display: block;
+      z-index: 1;
+    }
+  }
+
+  .slide-num {
+    position: relative;
+    z-index: 999;
+    left: 50%;
+    margin-left: -100px;
+    bottom: 30px;
+    width: 200px;
+    font-size: 0;
+    text-align: center;
+    -webkit-transition: all .3s;
+    &:hover {
+      -webkit-transform: scale(1.5);
+    }
+    li {
+      margin: 5px;
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      //      background: #999;
+      text-indent: -9999px;
+      cursor: pointer;
+    }
+
+    .cur {
+      border: 2px solid #f5422a;
+      //      background-color: #fff;
+    }
+  }
+}
+
