@@ -81,11 +81,11 @@
             });
         });
         arrowRight.click(function () {
+            if ( INDEX >= slidePic.length ) {
+                INDEX = 0;
+            }
             switchSlide(INDEX, function () {
                 INDEX++;
-                if ( INDEX >= slidePic.length ) {
-                    INDEX = 0;
-                }
             });
         });
     }
