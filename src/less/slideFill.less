@@ -8,8 +8,10 @@
 @slide-fill-height: 350px;
 
 .slide-fill {
+  position: relative;
   width: 100%;
   height: @slide-fill-height;
+
 
   .slide-pic {
     position: relative;
@@ -64,6 +66,46 @@
     .cur {
       border: 2px solid #f5422a;
       //      background-color: #fff;
+    }
+  }
+
+  .arrow {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    z-index: 999;
+    top: 50%;
+    margin-top: -40px;
+    width: 50px;
+    height: 80px;
+    background-repeat: no-repeat;
+    -webkit-transition: all .3s ease;
+  }
+
+  .arrow-left {
+    left: 40px;
+    background-image: url(../images/icon-arrow.png);
+    background-position: 8px center;
+  }
+
+  .arrow-right {
+    right: 40px;
+    background-image: url(../images/icon-arrow.png);
+    background-position: -70px center;
+  }
+}
+
+.slide-fill-prevNext {
+  &:hover {
+    .arrow {
+      visibility: visible;
+      opacity: 1;
+    }
+    .arrow-left {
+      -webkit-transform: translateX(-20px);
+    }
+    .arrow-right {
+      -webkit-transform: translateX(20px);
     }
   }
 }

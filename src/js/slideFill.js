@@ -23,7 +23,11 @@
 
     var slideFill = $('#J-slide-fill'),
         slidePic = slideFill.find('.slide-pic li'),
-        slideNum = slideFill.find('.slide-num li')
+        slideNum = slideFill.find('.slide-num li'),
+
+        arrow = slideFill.find('.arrow'),
+        arrowLeft = slideFill.find('.arrow-left'),
+        arrowRight = slideFill.find('.arrow-right')
         ;
 
     var INDEX = 1;
@@ -35,12 +39,12 @@
      * @param callback
      */
     function switchSlide ( i, callback ) {
-        slideFill.find('.slide-pic .cur').fadeOut(800, function () {
+        slideFill.find('.slide-pic .cur').stop().fadeOut(800, function () {
             $(this).removeClass('cur');
         });
         slideNum.eq(i).addClass('cur').siblings().removeClass('cur');
 
-        slidePic.eq(i).fadeIn(800, function () {
+        slidePic.eq(i).stop().fadeIn(800, function () {
             slidePic.eq(i).addClass('cur');
             callback&&callback();
         });
@@ -54,6 +58,7 @@
         for ( var i = 0, len = slideNum.length; i < len; i++ ) {
             (function (i) {
                 slideNum.eq(i).click(function () {
+                    if ( $(this).hasClass('cur') ) return;
                     switchSlide(i);
                     clearInterval(timer);
                     INDEX = i+1;
@@ -62,18 +67,41 @@
         }
     }
 
+    /**
+     * 上一张/下一张
+     */
+    function prevNextSlide () {
+        slideFill.addClass('slide-fill-prevNext');
+        arrowLeft.click(function () {
+            switchSlide(INDEX-2, function () {
+                INDEX--;
+                if ( INDEX <=0 ) {
+                    INDEX = slidePic.length;
+                }
+            });
+        });
+        arrowRight.click(function () {
+            switchSlide(INDEX, function () {
+                INDEX++;
+                if ( INDEX >= slidePic.length ) {
+                    INDEX = 0;
+                }
+            });
+        });
+    }
+
 
 
     /**
      * 鼠标移入停止自动切换
      */
-    function mouseOverPause () {
+    (function mouseOverPause () {
         slideFill.mouseenter(function () {
             clearInterval(timer);
         }).mouseleave(function () {
             autoSlide();
         });
-    }
+    })();
 
 
     /**
@@ -89,12 +117,38 @@
             switchSlide( _index, function () {
                 INDEX++;
             });
-        }, 3000);
+        }, _config.slideTime);
     }
 
+    /**
+     * 幻灯片调用入口及配置
+     * @param {JSON} config
+     */
+    var _config = {};
+    function init ( config ) {
+        _config = {
+            handSlide: true,
+            autoSlide: false,
+            showPrevNextBtn: false,
+            slideTime: 5000
+        };
+
+        for ( var i in config ) {
+            for ( var j in _config ) {
+                if ( i == j ) {
+                    _config[j] = config[i];
+                }
+            }
+        }
+        _config.handSlide&&handSlide();
+        _config.autoSlide&&autoSlide();
+        _config.showPrevNextBtn&&prevNextSlide();
+        console.log(_config );
+
+    }
+
+
     return {
-        handSlide: handSlide,
-        autoSlide: autoSlide,
-        mouseOverPause: mouseOverPause
+        init: init
     };
 });
