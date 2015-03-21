@@ -10,7 +10,9 @@
 
 + 鼠标移入暂停切换
 
-+ 切换效果为淡入淡出
++ 淡入淡出
+
++ 上一张下一张
 
 + 支持AMD规范
 
@@ -22,9 +24,16 @@
 ```
 <script src="{yourURL}/slideFill.js"></script>
 <script>
-	slideFill.handSlide();
-	slideFill.autoSlide();
-	slideFill.mouseOverPause();
+    slideFill.init({
+        // 手动切换，默认为true
+        handSlide: true,
+        // 自动切换，默认为false
+        autoSlide: true,
+        // 显示左右上一站下一张按钮，默认为false
+        showPrevNextBtn: true,
+        // 幻灯片自动切换间隔时长，默认为5000ms
+        slideTime: 6000
+    });
 </script>
 ```
 
@@ -33,19 +42,40 @@
 <script>
 //...
 require(['{yourURL}/slideFill'], function ( slideFill ) {
-	slideFill.handSlide();
-	slideFill.autoSlide();
-	slideFill.mouseOverPause();
+    slideFill.init({
+        // 手动切换，默认为true
+        handSlide: true,
+        // 自动切换，默认为false
+        autoSlide: true,
+        // 显示左右上一站下一张按钮，默认为false
+        showPrevNextBtn: true,
+        // 幻灯片自动切换间隔时长，默认为5000ms
+        slideTime: 6000
+    });
 });
 //...
 </script>
 ```
 
+## History:
+
+ v0.1.1
+
+ + 增加上一张下一张按钮
+
+ + 按钮在鼠标移入时的效果调整
+
+ + 增加可配置参数
+
+ v0.1.0
+
+ + 第一次提交
+
 ## Todo:
 
-+ 增加可配置项，如切换时间间隔
++ IE兼容测试
 
-+ 增加左右箭头
++ 增加切换效果
 
 
 
